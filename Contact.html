@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Matthew Read - Portfolio</title>
+
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="./css/styles.css" rel="stylesheet">
+
+    </head>
+
+        <body>
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+
+                    <a class="navbar-brand" href="Home.html">
+                        <img src="Images/Logo.jpg" alt="" height="45" width="70">
+                    </a>
+                    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarsResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                            <ul class="nav navbar-nav ml-auto">
+                              <li class="nav-item">
+                                <a class="nav-link" href="Portfolio.html" id="portfolio">Portfolio</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="About.html" id="about">About</a>
+                              </li>
+                              <li class="nav-item active">
+                                <a class="nav-link" href="Contact.html" id="contact">Contact
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                              </li>
+                            </ul>
+                        </div>
+                      </nav>
+
+                    <main role="main" class="container contact">
+
+                            <script type="text/javascript">
+
+                                function submitForm () {
+                                  var fName = $("#fName").val();
+                                  var lName = $("#lName").val();
+                                  var email = $("#email").val();
+                                  var phone = $("#phone").val();
+                                
+                                  var errors = 0;
+                                
+                                  if (fName == "") {
+                                      errors ++;
+                                      $("#fNameError").css("display","inline-block");
+                                  } else {
+                                      $("#fNameError").css("display","none");
+                                  }
+                                  if (lName == "") {
+                                      errors ++;
+                                      $("#lNameError").css("display","inline-block");
+                                  } else {
+                                      $("#lNameError").css("display","none");
+                                  }
+                                  if (email == "") {
+                                      errors ++;
+                                      $("#emailError").css("display","inline-block");
+                                  } else {
+                                      $("#emailError").css("display","none");
+                                  }
+                                  if (phone == "") {
+                                      errors ++;
+                                      $("#phoneError").css("display","inline-block");
+                                  } else {
+                                      $("#phoneError").css("display","none");
+                                  }
+                                
+                                
+                                  if (errors != 0) {
+                                                alert("You have " +errors+ " errors.");
+                                            } else {
+                                                dataString = sendToServer(fName, lName, email, phone);
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "Send.php",
+                                                    data: dataString,
+                                                    success: function(msg) {
+                                                        if (msg!="") {
+                                                            alert(msg);
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                            function sendToServer(fName, lName, email, phone) {
+                                            var dataString = "fName="+fName+"&lName="+lName+"&email="+email+"&phone"+phone;
+                                            return  dataString;
+                                            }
+                                      }
+                            </script>
+
+                        <h1 class="contact-heading">Contact Me</h1>
+
+                        <img src="Images/Matt.jpg" class="mx-auto d-block" alt="" id="Matt" height="300" width="300">
+
+                        <h2 class="bio">Matthew Read <br />
+                                        MattRead2016@outlook.com<br />
+                                        (902) 304-2892 <br/></h2>
+                        <br/>
+
+                        <h6>All fields that have been marked with (*) are required</h6>
+                        <br/>
+                        <form id="form1" name="form1" method="POST" action="javascript:submitForm();">
+                                <label for="fName">First Name:*</label>
+                                    <input type="text" name="fName" id="fName" value="" class="form-control" />
+                                        <span id="fNameError" class="errors">*Required
+                                          <div class="alert alert-danger alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert">
+                                            &times;</button>
+                                            ERROR: Field Input Missing
+                                          </div>
+                                        </span>
+                                <br />
+
+                                <label for="lName">Last Name:*</label>
+                                    <input type="text" name="lName" id="lName" value="" class="form-control" />
+                                        <span id="lNameError" class="errors">*Required
+                                          <div class="alert alert-danger alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert">
+                                            &times;</button>
+                                            ERROR: Field Input Missing
+                                          </div>
+                                        </span>
+                                <br />
+
+                                <label for="email">Email Address:*</label>
+                                    <input type="text" name="email" id="email" value="" class="form-control" />
+                                        <span id="emailError" class="errors">*Required
+                                          <div class="alert alert-danger alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert">
+                                            &times;</button>
+                                            ERROR: Field Input Missing
+                                          </div>
+                                        </span>
+                                <br />
+
+                                <label for="phone">Phone Number:*</label>
+                                    <input type="text" name="phone" id="phone" value="" class="form-control" />
+                                        <span id="phoneError" class="errors">*Required
+                                          <div class="alert alert-danger alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert">
+                                            &times;</button>
+                                            ERROR: Field Input Missing
+                                          </div>
+                                        </span>
+                                <br />
+                                
+
+                                <input type="submit" name="submit" class="btn btn-primary" value="Submit" />
+                            </form>
+                            <br/>
+
+                    </main>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="./js/jquery-slim.min.js"><\/script>')</script>
+        <script src="./js/popper.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+    </body>
